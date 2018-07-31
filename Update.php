@@ -1,13 +1,15 @@
+<?php //require_once ("Connection.php"); ?>
 <?php
+//global $Connection;
 $Connection = mysqli_connect("localhost", "root", "", "record");
-$Update_Recored = $_GET['Update'];
+$Update_Recored = @$_GET["Update"];
 
-$ShowQuery = "Select * From emp_record Where id = '$Update_Recored' ";
+$ShowQuery = "SELECT * FROM emp_record WHERE id = '$Update_Recored' ";
 $Update = mysqli_query($Connection, $ShowQuery);
 
 while ($DataRows = mysqli_fetch_array($Update)) {
 	$Update_Id = $DataRows['id'];
-    $EName = $DataRows['ename'];
+    $EName = $DataRows['enam'];
     $SSN = $DataRows['ssn'];
     $Dept = $DataRows['dept'];
     $Salary = $DataRows['salary'];
@@ -75,7 +77,7 @@ while ($DataRows = mysqli_fetch_array($Update)) {
  </style>
  <body>
  	<div id="center">
- 		<form action=Update.php?Update_Id=<?php echo $Update_Id; ?>" method="post">
+ 		<form action="Update.php?Update_Id=<?php echo $Update_Id; ?>" method="GET" enctype="multipart/form-data">
  			<fieldset>
  				<span class="FieldInfo">Employee Name:</span> <br>
  				<input type="text" name="EName" value="<?php echo $EName; ?>"> <br>
@@ -101,13 +103,13 @@ while ($DataRows = mysqli_fetch_array($Update)) {
 $Connection = mysqli_connect("localhost", "root", "", "record");
 if (isset($_POST['Submit'])) {
 	$Update_Id = $_GET['Update_Id'];
-	$EName = $_POST[EName];
+	$EName = $_POST['EName'];
 	$SSN = $_POST['SSN'];
 	$Dept = $_POST['Dept'];
 	$Salary = $_POST['Salary'];
 	$HomeAddress = $_POST['HomeAddress'];
 
-	$UpdateQuery = "Update emp_record Set ename = '$EName', ssn = '$SSN', dept = '$Dept', salary = '$Salary', homeaddress = '$HomeAddress' Where id = '$Update_Id' ";
+	$UpdateQuery = "UPDATE emp_record SET enam = '$EName', ssn = '$SSN', dept = '$Dept', salary = '$Salary', homeaddress = '$HomeAddress' WHERE id = '$Update_Id' ";
 	$Execute = mysqli_query($Connection, $UpdateQuery);
 	if ($Execute) {
 		function redirect_to($NewLocation) {

@@ -15,7 +15,6 @@
 	}
 </style>
 <body>
-	<h2 class="Success"><?php echo @$_GET['Deleted']; ?></h2>
 	<h2 class="Success"><?php echo  @$_GET['Updated']; ?></h2>
 	<table width="1000" border="5" align="center">
 		<caption>View From Database</caption>
@@ -37,7 +36,7 @@
 		$Execute = mysqli_query($Connection, $ViewQuery);
 		while ($DataRows = mysqli_fetch_array($Execute)) { // Duyet qua tung phan tu,
 			$Id = $DataRows['id']; // gan cot trong csdl vao ten bien
-			$Ename = $DataRows['ename'];
+			$Ename = $DataRows['enam'];
 			$SSN = $DataRows['ssn'];
 			$Dept = $DataRows['dept'];
 			$Salary = $DataRows['salary'];
@@ -50,7 +49,7 @@
 				<td><?php echo $Dept; ?></td>
 				<td><?php echo $Salary; ?></td>
 				<td><?php echo $HomeAddress; ?></td>
-				<td><a href="Delete.php?Delete=<?php echo $Id; ?>">Delete</a></td>
+				<td>Delete</td>
 				<td><a href="Update.php?Update=<?php echo $Id; ?>">Update</a></td>
 			</tr>
 			<?php

@@ -125,7 +125,7 @@
 		$Execute = mysqli_query($Connection, $SearchQuery);
 		while ($DataRows = mysqli_fetch_array($Execute) ){
 		    $Id = $DataRows['id'];
-		    $EName = $DataRows['ename'];
+		    $EName = $DataRows['enam'];
 		    $SSN = $DataRows['ssn'];
 		    $Dept = $DataRows['dept'];
 		    $Salary = $DataRows['salary'];

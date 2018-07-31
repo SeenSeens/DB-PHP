@@ -35,7 +35,7 @@
 		$Execute = mysqli_query($Connection, $ViewQuery);
 		while ($DataRows = mysqli_fetch_array($Execute)) { // Duyet qua tung phan tu,
 			$Id = $DataRows['id']; // gan cot trong csdl vao ten bien
-			$Ename = $DataRows['ename'];
+			$Ename = $DataRows['enam'];
 			$SSN = $DataRows['ssn'];
 			$Dept = $DataRows['dept'];
 			$Salary = $DataRows['salary'];
@@ -48,8 +48,8 @@
 				<td><?php echo $Dept; ?></td>
 				<td><?php echo $Salary; ?></td>
 				<td><?php echo $HomeAddress; ?></td>
-				<td>Delete</td>
-				<td>Update</td>
+				<td><a href="Delete_From_Database.php">Delete</a></td>
+				<td><a href="Update_Into_Database.php">Update</a></td>
 			</tr>
 			<?php
 		}

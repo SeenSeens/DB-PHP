@@ -1,14 +1,19 @@
 <?php
-if (isset($_POST['Submit'])) {
-	if (!empty($_POST['EName']) && !empty($_POST['SSN'])) {
-		$EName = mysqli_escape_string($_POST['EName']);
-		$SSN = mysqli_escape_string($_POST['SSN']);
-		$Dept = mysqli_escape_string($_POST['Dept']);
-		$Salary = mysqli_escape_string($_POST['Salary']);
-		$HomeAddress = mysqli_escape_string($_POST['HomeAddress']);
+require_once ("Connection.php");
+?>
 
-		$Connection = mysqli_connect("localhost", "root", "", "record");
-		$Query = "Insert Into emp_record (ename, ssn, dept, salary, homeaddress) Values ('$EName', '$SSN', '$Dept', '$Salary', '$HomeAddress')"; 
+<?php
+global $Connection;
+if (isset($_POST["Submit"])) {
+	if (!empty($_POST["EName"]) && !empty($_POST["SSN"])) {
+		$EName = mysqli_real_escape_string($Connection, $_POST["EName"]);
+		$SSN = mysqli_real_escape_string($Connection, $_POST['SSN']);
+		$Dept = mysqli_real_escape_string($Connection, $_POST['Dept']);
+		$Salary = mysqli_real_escape_string($Connection, $_POST['Salary']);
+		$HomeAddress = mysqli_real_escape_string($Connection, $_POST['HomeAddress']);
+
+		//$Connection = mysqli_connect("localhost", "root", "", "record");
+		$Query = "INSERT INTO emp_record (enam, ssn, dept, salary, homeaddress) VALUES ('$EName', '$SSN', '$Dept', '$Salary', '$HomeAddress')"; 
 		$Execute = mysqli_query($Connection, $Query);
 
 		if ($Execute) {
